@@ -54,11 +54,9 @@ Untuk menjalankan proyek ini secara lokal, ikuti langkah-langkah berikut:
 1.  **Kloning Repositori**:
 
     ```bash
-    git clone [URL_REPOSITORI_ANDA]
-    cd [nama-folder-aplikasi]
+    git clone https://github.com/caksodig/To-Do.git
+    cd todo-app
     ```
-
-    _(Ganti `[URL_REPOSITORI_ANDA]` dengan URL repositori GitHub pribadi Anda dan `[nama-folder-aplikasi]` dengan nama folder tempat Anda mengkloning repositori)._
 
 2.  **Instal Dependensi**:
 
