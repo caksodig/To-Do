@@ -1,68 +1,12 @@
-// import { create } from "zustand";
-// import { persist } from "zustand/middleware";
-// import Cookies from "js-cookie";
-
-// interface AuthState {
-//   token: string | null;
-//   user: {
-//     email: string;
-//     name: string;
-//   } | null;
-//   login: (token: string, user: { email: string; name: string }) => void;
-//   logout: () => void;
-// }
-
-// export const useAuthStore = create<AuthState>()(
-//   persist(
-//     (set) => ({
-//       token: null,
-//       user: null,
-//       login: (token, user) => {
-//         Cookies.set("token", token);
-//         set({ token, user });
-//       },
-//       logout: () => {
-//         Cookies.remove("token");
-//         set({ token: null, user: null });
-//       },
-//     }),
-//     {
-//       name: "auth-storage",
-//     }
-//   )
-// );
-
-// store/authStore.ts
-// import { create } from "zustand";
-// import { persist } from "zustand/middleware";
-
-// interface AuthState {
-//   token: string | null;
-//   user: { email: string; name: string } | null;
-//   login: (token: string, user: { email: string; name: string }) => void;
-//   logout: () => void;
-// }
-
-// export const useAuthStore = create<AuthState>()(
-//   persist(
-//     (set) => ({
-//       token: null,
-//       user: null,
-//       login: (token, user) => set({ token, user }),
-//       logout: () => set({ token: null, user: null }),
-//     }),
-//     {
-//       name: "auth-storage",
-//     }
-//   )
-// );
-
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 interface User {
-  email: string;
+  id: string;
   name: string;
+  fullName: string;
+  email: string;
+  role: string;
 }
 
 interface AuthState {
@@ -74,7 +18,6 @@ interface AuthState {
   syncToCookie: () => void;
 }
 
-// Helper function to set cookie
 const setCookie = (name: string, value: string, days: number = 1) => {
   if (typeof document !== "undefined") {
     const expires = new Date();
@@ -83,7 +26,6 @@ const setCookie = (name: string, value: string, days: number = 1) => {
   }
 };
 
-// Helper function to remove cookie
 const removeCookie = (name: string) => {
   if (typeof document !== "undefined") {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;

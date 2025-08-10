@@ -16,7 +16,6 @@ export default function DashboardLayout({
           <header className="border-b bg-background px-4 py-2 lg:hidden">
             <SidebarTrigger />
           </header>
-
           <main className="flex-1 overflow-auto">{children}</main>
         </div>
       </div>

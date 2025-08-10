@@ -7,10 +7,8 @@ import { useRouter, usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   LogOut,
-  Settings,
   User,
   Home,
-  CheckSquare,
 } from "lucide-react";
 import {
   Sidebar,

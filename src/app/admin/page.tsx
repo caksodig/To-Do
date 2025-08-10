@@ -2,12 +2,11 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { useAuthStore } from "@/store/authStore";
-import axios from "axios";
 import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { api } from "@/lib/api";
+import { api } from "@/service/api.service";
 
 interface Todo {
   id: string;
@@ -32,8 +31,6 @@ export default function AdminPage() {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState<"all" | "done" | "undone">("all");
   const [debouncedSearch, setDebouncedSearch] = useState("");
-
-
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -158,10 +155,9 @@ export default function AdminPage() {
         <table className="w-full text-left">
           <thead className="bg-gray-100">
             <tr>
-              <th className="px-4 py-2">To do</th>
-              <th className="px-4 py-2">Status</th>
               <th className="px-4 py-2">Name</th>
-              <th className="px-4 py-2">Created</th>
+              <th className="px-4 py-2">To do</th>
+              <th className="px-4 py-2">Statue</th>
             </tr>
           </thead>
           <tbody>
@@ -195,6 +191,9 @@ export default function AdminPage() {
               todos.map((todo) => (
                 <tr key={todo.id} className="border-t hover:bg-gray-50">
                   <td className="px-4 py-2">
+                    {user?.fullName || "Unknown User"}
+                  </td>
+                  <td className="px-4 py-2">
                     <div className="max-w-xs truncate" title={todo.item}>
                       {todo.item}
                     </div>
@@ -208,10 +207,6 @@ export default function AdminPage() {
                     >
                       {todo.isDone ? "Done" : "Pending"}
                     </span>
-                  </td>
-                  <td className="px-4 py-2">{user?.name || "Unknown User"}</td>
-                  <td className="px-4 py-2 text-sm text-gray-500">
-                    {new Date(todo.createdAt).toLocaleDateString()}
                   </td>
                 </tr>
               ))
